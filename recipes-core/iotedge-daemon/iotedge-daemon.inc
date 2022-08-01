@@ -1,6 +1,6 @@
 DEPENDS += "openssl virtual/docker virtual/libiothsm "
-RDEPENDS_${PN} += "virtual/libiothsm docker "
-INSANE_SKIP_${PN} += "dev-deps"
+RDEPENDS:${PN} += "virtual/libiothsm docker "
+INSANE_SKIP:${PN} += "dev-deps"
 
 export OPENSSL_DIR = "${STAGING_EXECPREFIXDIR}"
 export LIBIOTHSM_NOBUILD="On"
@@ -8,12 +8,12 @@ export LIBIOTHSM_NOBUILD="On"
 inherit systemd update-rc.d
 
 SYSTEMD_PACKAGES = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '${PN}', '', d)}"
-SYSTEMD_SERVICE_${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'iotedge.service', '', d)}"
-SYSTEMD_AUTO_ENABLE_${PN} = "enable"
+SYSTEMD_SERVICE:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'iotedge.service', '', d)}"
+SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 
 INITSCRIPT_PACKAGES += "${@bb.utils.contains('DISTRO_FEATURES','sysvinit','${PN}','',d)}"
-INITSCRIPT_NAME_${PN} = "${@bb.utils.contains('DISTRO_FEATURES','sysvinit','iotedge','',d)}"
-INITSCRIPT_PARAMS_${PN} = "defaults"
+INITSCRIPT_NAME:${PN} = "${@bb.utils.contains('DISTRO_FEATURES','sysvinit','iotedge','',d)}"
+INITSCRIPT_PARAMS:${PN} = "defaults"
 
 do_install () {
     # Binaries
@@ -40,10 +40,10 @@ do_install () {
 
 inherit useradd
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-r -u 15580 -g iotedge -G docker -s /bin/false -d ${localstatedir}/lib/iotedge iotedge"
-GROUPADD_PARAM_${PN} = "-r -g 15580 iotedge"
+USERADD_PARAM:${PN} = "-r -u 15580 -g iotedge -G docker -s /bin/false -d ${localstatedir}/lib/iotedge iotedge"
+GROUPADD_PARAM:${PN} = "-r -g 15580 iotedge"
 
-FILES_${PN} += " \
+FILES:${PN} += " \
     ${systemd_unitdir}/system/* \
     ${localstatedir}/lib/iotedge \
     "

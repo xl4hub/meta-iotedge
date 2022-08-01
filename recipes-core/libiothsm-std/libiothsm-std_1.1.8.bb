@@ -13,7 +13,7 @@ S = "${WORKDIR}/iotedge-${PV}/hsm-sys/azure-iot-hsm-c"
 
 DEPENDS += "openssl"
 PROVIDES += "virtual/libiothsm"
-RPROVIDES_${PN} += "virtual/libiothsm"
+RPROVIDES:${PN} += "virtual/libiothsm"
 
 EXTRA_OECMAKE += "-DBUILD_SHARED=On -Duse_emulator=Off -Duse_http=Off -Duse_default_uuid=On -DCMAKE_SYSTEM_VERSION=10"
 inherit cmake

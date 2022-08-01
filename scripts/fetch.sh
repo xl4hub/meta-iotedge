@@ -11,11 +11,11 @@ branch=${1-master}
 # NOTE: poky must remain first
 REPOS="poky metaoe metarust metavirt"
 
-POKY_URI="git://git.yoctoproject.org/poky.git"
+POKY_URI="git://git.yoctoproject.org/poky.git;branch=master"
 POKY_PATH="poky"
 POKY_REV="${POKY_REV-refs/remotes/origin/${branch}}"
 
-METAOE_URI="git://git.openembedded.org/meta-openembedded.git"
+METAOE_URI="git://git.openembedded.org/meta-openembedded.git;branch=master"
 METAOE_PATH="poky/meta-openembedded"
 METAOE_REV="${METAOE_REV-refs/remotes/origin/${branch}}"
 
@@ -23,7 +23,7 @@ METARUST_URI="https://github.com/meta-rust/meta-rust.git"
 METARUST_PATH="poky/meta-rust"
 METARUST_REV="${METARUST_REV-refs/remotes/origin/${branch}}"
 
-METAVIRT_URI="git://git.yoctoproject.org/meta-virtualization"
+METAVIRT_URI="git://git.yoctoproject.org/meta-virtualization;branch=master"
 METAVIRT_PATH="poky/meta-virtualization"
 METAVIRT_REV="${METAVIRT_REV-refs/remotes/origin/${branch}}"
 
